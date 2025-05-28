@@ -14,3 +14,11 @@ jobs:
       - name: Update for User 1
         if: ${{ github.actor == 'AshReign' }}
         run: echo "<p>Updated by AshReign</p>" >> index.html
+      - name: Append to README.md
+        run: |
+          echo "Update to index.html by ${{ github.actor }} on $(date)" >> README.md
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add README.md
+          git commit -m "Log update to README by ${{ github.actor }}"
+          git push origin main

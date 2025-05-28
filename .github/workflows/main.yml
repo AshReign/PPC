@@ -11,3 +11,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+      - name: Update for User 1
+        if: ${{ github.actor == 'AshReign' }}
+        run: echo "Updated by AshReign" >> index.html
